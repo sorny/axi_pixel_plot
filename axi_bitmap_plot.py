@@ -69,7 +69,6 @@ else:
     print('w: {} h: {} plotpoints: {}/{}'.format(im.width, im.height, len(axi_pen_downs), (im.width * im.height)))
 
 unplotted = [i for i in axi_pen_downs]
-# unplotted = axi_pen_downs
 try:
     print('Plotting...')
     plotting_progress = tqdm(axi_pen_downs, desc='Plotting progress', unit='pd')
