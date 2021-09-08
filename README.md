@@ -23,10 +23,9 @@ axi_bitmap_plot uses open source libs and open data to work properly:
 ```sh
 pip3 install -r requirements.txt
 ```
-3) Update `pyaxi_bitmap_plot.py` and set the bitmap to plot
-4) Run the script in dryrun mode
+3) Test the script via the included test.bmp (plots a filled 1x1cm square / 400 pen-downs)
 ```sh
-python3 pyaxi_bitmap_plot.py
+python3 pyaxi_bitmap_plot.py test.bmp
 ```
 
 ### Notes
