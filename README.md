@@ -1,5 +1,5 @@
 # axi_bitmap_plot
-Plot bitmaps through your AxiDraw
+Plot bitmaps through your AxiDraw. Or lets say its not really plotting, its 'dotting'.
 
 # Main Features:
 
@@ -32,6 +32,7 @@ python3 axi_bitmap_plot.py test.bmp
 
  * This script is not plotting lines, it is pure pen-down / pen-up action -> This takes a while. E.g. 50x70cm takes around 8h to plot
  * Movements are not optimized
+ * This script is only tests on OSX
 
 
 
