@@ -25,7 +25,7 @@ pip3 install -r requirements.txt
 ```
 3) Test the script via the included test.bmp (plots a filled 1x1cm square / 400 pen-downs)
 ```sh
-python3 pyaxi_bitmap_plot.py test.bmp
+python3 axi_bitmap_plot.py test.bmp
 ```
 
 ### Notes
