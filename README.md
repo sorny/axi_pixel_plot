@@ -1,9 +1,9 @@
-# axi_bitmap_plot
+# axi_pixel_plot
 Plot bitmaps through your AxiDraw. Or lets say its not really plotting, its 'dotting'.
 
 # Main Features:
 
-  - Plot any bitmap via pyaxidraw
+  - Plot any bitmap or jpg via pyaxidraw
   - Resolution: 20 dots per cm / 0.05mm
   - Example: 50cm x 70cm print = 1000x1400px bitmap
   - Progress is displayed via tqdm progress bars
@@ -23,9 +23,17 @@ axi_bitmap_plot uses open source libs and open data to work properly:
 ```sh
 pip3 install -r requirements.txt
 ```
-3) Test the script via the included test.bmp (plots a filled 1x1cm square / 400 pen-downs)
+3) Test the script to get some plot metadata via the included test.bmp
 ```sh
-python3 axi_bitmap_plot.py test.bmp
+python3 axi_pixel_plot.py --analyse test.bmp
+```
+4) Plot the included test.bmp (plots a filled 1x1cm square / 400 pen-downs)
+```sh
+python3 axi_pixel_plot.py --plot test.bmp
+```
+5) Get help via
+```sh
+python3 axi_pixel_plot.py -h
 ```
 
 ### Notes
