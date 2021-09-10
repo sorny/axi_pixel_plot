@@ -4,7 +4,7 @@ Plot bitmaps through your AxiDraw. Or lets say its not really plotting, its 'dot
 # Main Features:
 
   - Plot any bitmap via pyaxidraw
-  - Resolution: 20 dots per cm
+  - Resolution: 20 dots per cm / 0.05mm
   - Example: 50cm x 70cm print = 1000x1400px bitmap
   - Progress is displayed via tqdm progress bars
   - If plot is aborted, the remaining plotting data is stored in a recovery file to resume plotting
@@ -31,8 +31,10 @@ python3 axi_bitmap_plot.py test.bmp
 ### Notes
 
  * This script is not plotting lines, it is pure pen-down / pen-up action -> This takes a while. E.g. 50x70cm takes around 8h to plot
- * Movements are not optimized
- * This script is only tests on OSX
+ * Movements are not optimized, reducing x/y movements could be easily done I guess.
+ * This script is only tests on OSX and rpi4
+ * To run it on your raspberry: `sudo apt-get install libxslt-dev libopenjp2-7 libtiff5 libatlas-base-dev` prior to the pip install
+ * I made some good experience with the Stabilo Fineliners for the pendown/penup action -> recommended tool of trade
 
 
 
