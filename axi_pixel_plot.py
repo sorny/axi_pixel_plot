@@ -49,28 +49,28 @@ def generate_plot_statistics(image, axi_pen_downs, axi_pen_downs_recover):
     return stats
 
 
-def print_statistic(name, value):
+def pps(name, value):
     print(' {0: <17}'.format(name + ': ') + value)
 
 
 def print_statistics(image, axi_pen_downs, recovery_file, axi_pen_downs_recover):
     stats = generate_plot_statistics(image, axi_pen_downs, axi_pen_downs_recover)
     print('Plot statistics...')
-    statistic('Image', stats['name'])
-    statistic('Size', stats['image_size'])
-    statistic('Plot resolution', stats['image_size'])
-    statistic('Plotsize', str(stats['plot_size_width']) + 'x' + str(stats['plot_size_height']) + 'cm')
+    pps('Image', stats['name'])
+    pps('Size', stats['image_size'])
+    pps('Plot resolution', str(stats['plot_resolution']) + 'px/cm')
+    pps('Plotsize', str(stats['plot_size_width']) + 'x' + str(stats['plot_size_height']) + 'cm')
 
     if len(axi_pen_downs_recover) > 0:
-        statistic('Recover file', recovery_file)
-        statistic('# Total Pen-Downs', str(stats['pen_downs']))
-        statistic('# Pen-Downs left', str(stats['recover_pen_downs']))
-        statistic('Plot duration total', str(datetime.timedelta(seconds=stats['plot_duration'])))
-        statistic('Plot duration left',
-                  str(datetime.timedelta(seconds=stats['recover_plot_duration'])))
+        pps('Recover file', recovery_file)
+        pps('# Total Pen-Downs', str(stats['pen_downs']))
+        pps('# Pen-Downs left', str(stats['recover_pen_downs']))
+        pps('Plot duration total', str(datetime.timedelta(seconds=stats['plot_duration'])))
+        pps('Plot duration left',
+            str(datetime.timedelta(seconds=stats['recover_plot_duration'])))
     else:
-        statistic('# Pen-Downs', str(stats['pen_downs']))
-        statistic('Plot duration', str(datetime.timedelta(seconds=stats['plot_duration'])))
+        pps('# Pen-Downs', str(stats['pen_downs']))
+        pps('Plot duration', str(datetime.timedelta(seconds=stats['plot_duration'])))
     print()
 
 
@@ -81,8 +81,12 @@ def generate_pen_downs(image):
     for x in range(image.width):
         for y in range(image.height):
             p = image.getpixel((x, y))
-            if p < 250:
-                pen_downs.append((axipos_x, axipos_y))
+            if image.mode == 'L':
+                if p < 250:
+                    pen_downs.append((axipos_x, axipos_y))
+            if image.mode == 'P':
+                if p == 1:
+                    pen_downs.append((axipos_x, axipos_y))
             axipos_y = round(axipos_y + RESOLUTION, 2)
         axipos_y = 0.0
         axipos_x = round(axipos_x + RESOLUTION, 2)
@@ -102,7 +106,7 @@ if __name__ == '__main__':
 
     # load files
     image = Image.open(args.source_file.name)
-    if image.mode != 'L':
+    if not (image.mode == 'L' or image.mode == 'P'):
         raise Exception('Image mode ' + image.mode + ' not supported...')
     recovery_file = 'recovery_' + args.source_file.name.split('.')[0] + '.json'
 
@@ -116,9 +120,9 @@ if __name__ == '__main__':
             axi_pen_downs_recover = json.loads(open(recovery_file, 'r').read())
 
     # analyse image
-    print('Analysing {}...'.format(image.name))
+    print('Analysing {}...'.format(image.filename))
     axi_pen_downs = generate_pen_downs(image)
-    print_statistics(args, image, axi_pen_downs, recovery_file, axi_pen_downs_recover)
+    print_statistics(image, axi_pen_downs, recovery_file, axi_pen_downs_recover)
 
     if args.action == 'plot':
         print('Connecting to AxiDraw...')
