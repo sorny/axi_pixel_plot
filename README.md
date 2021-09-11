@@ -31,10 +31,6 @@ python3 axi_pixel_plot.py --analyse test.bmp
 ```sh
 python3 axi_pixel_plot.py --plot test.bmp
 ```
-4) Plot all pixels of mytest.jpg with RGB value 20,34,43
-```sh
-python3 axi_pixel_plot.py --plot test.jpg -r 20 -g 34 -b 43
-```
 5) Get help via
 ```sh
 python3 axi_pixel_plot.py -h
