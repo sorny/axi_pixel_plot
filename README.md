@@ -3,7 +3,9 @@ Plot bitmaps through your AxiDraw. Or lets say its not really plotting, its 'dot
 
 # Main Features:
 
-  - Plot any black pixel (value < 250) of an 8-bit monochrome bitmap via pyaxidraw
+  - Plot any monochrome bitmap via pyaxidraw
+    - 1-bit bitmap: 'dot' if value == 1
+    - 8-bit bitmap: 'dot' if value < 250
   - Resolution: 20 dots per cm / 0.05mm
   - Example: 70cm x 50cm print = 1400x1000px bitmap
   - Progress is displayed via tqdm progress bars
