@@ -11,7 +11,7 @@ Plot bitmaps through your AxiDraw. Or lets say its not really plotting, its 'dot
 
 ### Tech
 
-axi_bitmap_plot uses open source libs and open data to work properly:
+axi_pixel_plot uses open source libs and open data to work properly:
 
 * [tqdm](https://github.com/tqdm/tqdm) - A Fast, Extensible Progress Bar for Python and CLI
 * [Pillow](https://github.com/python-pillow/Pillow) - The friendly PIL fork (Python Imaging Library)
