@@ -5,7 +5,7 @@ Plot bitmaps through your AxiDraw. Or lets say its not really plotting, its 'dot
 
   - Plot any black pixel (value < 250) of an 8-bit monochrome bitmap via pyaxidraw
   - Resolution: 20 dots per cm / 0.05mm
-  - Example: 50cm x 70cm print = 1000x1400px bitmap
+  - Example: 70cm x 50cm print = 1400x1000px bitmap
   - Progress is displayed via tqdm progress bars
   - If plot is aborted, the remaining plotting data is stored in a recovery file to resume plotting
 
@@ -27,7 +27,7 @@ pip3 install -r requirements.txt
 ```sh
 python3 axi_pixel_plot.py --analyse test.bmp
 ```
-4) Plot the included test.bmp (plots a filled 1x1cm square / 400 pen-downs)
+4) Plot the included test.bmp (plots a 2x1cm square / 188 pen-downs)
 ```sh
 python3 axi_pixel_plot.py --plot test.bmp
 ```
