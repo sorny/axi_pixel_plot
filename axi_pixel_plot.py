@@ -116,7 +116,7 @@ if __name__ == '__main__':
     axi_pen_downs_recover = []
     recover = False
     if os.path.exists(recovery_file) and args.action == 'plot':
-        recover = yes_or_no('Continue plotting {} from {}?'.format(bmp_file, recovery_file))
+        recover = yes_or_no('Continue plotting {} from {}?'.format(image.filename, recovery_file))
         if recover:
             print('Recovering plotting data from {}...'.format(recovery_file))
             axi_pen_downs_recover = json.loads(open(recovery_file, 'r').read())
