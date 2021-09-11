@@ -35,12 +35,6 @@ def print_statistics(args, image, resolution, axi_pen_downs, recovery_file, axi_
     duration_factor = 2.5
     print('Plot statistics...')
     print(statistic('Image', args.source_file.name))
-    if image.mode == 'L':
-        print(statistic('Image mode', 'L (8bit pixels, black and white)'))
-    if image.mode == 'RGB':
-        print(statistic('Image mode', 'RGB (3x8-bit pixels, true color)'))
-        print(statistic('RGB filter', str(args.r) + ',' + str(args.g) + ',' + str(args.b)))
-
     print(statistic('Size', str(image.width) + 'x' + str(image.height) + 'px'))
     print(statistic('Plot resolution', str(math.floor(1 / resolution)) + 'px/cm'))
     print(
@@ -67,12 +61,6 @@ parser.add_argument('-a', '--analyse', dest='action', action='store_const',
                     const='analyse', default='analyse', help='Analyse the file and print statistics')
 parser.add_argument('source_file', type=open,
                     help='file to plot')
-parser.add_argument('-r', type=int,
-                    help='Red value for RGB filter')
-parser.add_argument('-g', type=int,
-                    help='Green value for RGB filter')
-parser.add_argument('-b', type=int,
-                    help='Blue value for RGB filter')
 args = parser.parse_args()
 
 ### plotting business ###
@@ -80,7 +68,7 @@ resolution = 0.05
 
 # load files
 image = Image.open(args.source_file.name)
-if not (image.mode == 'L' or image.mode == 'RGB'):
+if image.mode != 'L':
     raise Exception('Image mode ' + image.mode + ' not supported...')
 recovery_file = 'recovery_' + args.source_file.name.split('.')[0] + '.json'
 
@@ -100,13 +88,8 @@ axipos_y = 0.0
 for x in range(image.width):
     for y in range(image.height):
         p = image.getpixel((x, y))
-        if image.mode == 'L':
-            if p < 250:
-                axi_pen_downs.append((axipos_x, axipos_y))
-        if image.mode == 'RGB':
-            if p[0] == args.r and p[1] == args.g and p[2] == args.b:
-                axi_pen_downs.append((axipos_x, axipos_y))
-
+        if p < 250:
+            axi_pen_downs.append((axipos_x, axipos_y))
         axipos_y = round(axipos_y + resolution, 2)
     axipos_y = 0.0
     axipos_x = round(axipos_x + resolution, 2)
