@@ -38,10 +38,10 @@ python3 axi_pixel_plot.py -h
 
 ### Notes
 
- * This script is not plotting lines, it is pure pen-down / pen-up action -> This takes a while. E.g. 50x70cm takes around 8h to plot
+ * This script is not plotting lines, it is pure pen-down / pen-up action -> This takes a while ;)...
  * Movements are not optimized, reducing x/y movements could be easily done I guess.
- * This script is only tests on OSX and rpi4
- * To run it on your raspberry: `sudo apt-get install libxslt-dev libopenjp2-7 libtiff5 libatlas-base-dev` prior to the pip install
+ * This script was tested on OSX and rpi4
+ * To run it on your raspberry: `sudo apt-get install libxslt-dev libopenjp2-7 libtiff5 libatlas-base-dev` prior to the pip3 install
  * I made some good experience with the Stabilo Fineliners for the pendown/penup action -> recommended tool of trade
 
 
