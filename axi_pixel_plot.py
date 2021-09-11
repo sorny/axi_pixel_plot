@@ -34,6 +34,7 @@ def write_recovery_file(data, file):
 def generate_plot_statistics(image, axi_pen_downs, axi_pen_downs_recover):
     stats = dict()
     stats['name'] = image.filename
+    stats['image_mode'] = image.mode
     stats['image_size'] = str(image.width) + 'x' + str(image.height) + 'px'
     stats['plot_resolution'] = math.floor(1 / RESOLUTION)
     stats['plot_size_width'] = image.width / (1 / RESOLUTION)
@@ -57,6 +58,7 @@ def print_statistics(image, axi_pen_downs, recovery_file, axi_pen_downs_recover)
     stats = generate_plot_statistics(image, axi_pen_downs, axi_pen_downs_recover)
     print('Plot statistics...')
     pps('Image', stats['name'])
+    pps('Image mode', stats['image_mode'])
     pps('Size', stats['image_size'])
     pps('Plot resolution', str(stats['plot_resolution']) + 'px/cm')
     pps('Plotsize', str(stats['plot_size_width']) + 'x' + str(stats['plot_size_height']) + 'cm')
